@@ -142,10 +142,8 @@ hr {
 }
 
 .menu-img {
-    background-image: url("/resources/images/menu-back.jpg");
-    background-repeat: no-repeat;
-    background-position: right 0 bottom -265px;;
-    background-size: cover;
+    background: rgb(15,59,187);
+    background: linear-gradient(0deg, rgba(15,59,187,1) 0%, rgba(45,253,233,1) 100%);
     width: inherit;
     height: inherit;
 }
@@ -403,10 +401,8 @@ hr {
 }
 
 .footer {
-    background-image: url("/resources/images/menu-back.jpg");
-    background-repeat: no-repeat;
-    background-position: right 0 bottom -265px;;
-    background-size: cover;
+    background: rgb(15,59,187);
+    background: linear-gradient(0deg, rgba(15,59,187,1) 0%, rgba(45,253,233,1) 100%);
     width: 100%;
     height: 200px;
     margin: 20px 0;
@@ -418,9 +414,6 @@ hr {
 
 @media (max-width: 768px) {
     .footer {
-        background-position: unset !important;
-        border-bottom-left-radius: unset !important;
-        border-bottom-right-radius: unset !important;
         margin: 20px 0 0 0;
     }
 }

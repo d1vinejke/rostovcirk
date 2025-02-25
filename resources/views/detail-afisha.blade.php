@@ -64,10 +64,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
-                    <div>
-                        <h4 class="font-medium text-gray-900">Стоимость</h4>
-                        <p class="text-gray-600 mt-1">От 1500 ₽</p>
-                    </div>
                 </div>
 
                 <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 px-6 rounded-lg font-medium transition-colors">
