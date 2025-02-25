@@ -15,9 +15,11 @@
     </div>
 </div>
 
-<div class="contact-social">
-    <div class="contact-social-text">Актуальные новости в нашей группе VK</div>
-    <div class="contact-social-img"><a href="https://vk.com/rostovondoncircus" target="_blank"><img src="/images/vk.jpg" alt=""></a></div>
-</div>
+<a href="https://vk.com/rostovondoncircus" target="_blank">
+    <div class="contact-social">
+        <div class="contact-social-text">Актуальные новости в нашей группе VK</div>
+        <div class="contact-social-img"><img src="/images/vk.jpg" alt=""</div>
+    </div>
+</a>
 
 @include('layouts.footer')
