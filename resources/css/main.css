@@ -82,6 +82,7 @@ hr {
 
     .menu-img {
         background-size: unset !important;
+        height: inherit !important;
     }
 
     .menu-list {
@@ -145,7 +146,7 @@ hr {
     background: rgb(15,59,187);
     background: linear-gradient(0deg, rgba(15,59,187,1) 0%, rgba(45,253,233,1) 100%);
     width: inherit;
-    height: inherit;
+    height: 110px;
 }
 
 .menu-list {
