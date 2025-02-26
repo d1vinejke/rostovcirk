@@ -737,3 +737,14 @@ hr {
 .about-us__content-video{
     margin-left: 15px;
 }
+
+@media screen and (max-width: 768px) {
+    .about-us__content{
+        flex-wrap: wrap;
+    }
+
+    .about-us__content-video{
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
