@@ -11,7 +11,7 @@
             программы - ОГРОМНАЯ КРЫСА. И многое другое!
         </div>
         <div class="about-us__content-video">
-            <iframe src="https://vk.com/video_ext.php?oid=-111636339&id=456239118" width="426" height="240"
+            <iframe src="https://vk.com/video_ext.php?oid=-111636339&id=456239118" class="vk-video" height="240"
                     allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0"
                     allowfullscreen></iframe>
         </div>

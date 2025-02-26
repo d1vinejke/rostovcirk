@@ -738,6 +738,10 @@ hr {
     margin-left: 15px;
 }
 
+.vk-video{
+    width: 426px;
+}
+
 @media screen and (max-width: 768px) {
     .about-us__content{
         flex-wrap: wrap;
@@ -746,5 +750,9 @@ hr {
     .about-us__content-video{
         margin-left: auto !important;
         margin-right: auto !important;
+    }
+
+    .vk-video{
+        width: 365px !important;
     }
 }
