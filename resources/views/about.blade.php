@@ -10,7 +10,11 @@
             Алисы в стране чудес, байкер на мотоцикле, эквилибр, антипод, светодиодное шоу, слинки, клоуны, хит
             программы - ОГРОМНАЯ КРЫСА. И многое другое!
         </div>
-        <div class="about-us__content-video"></div>
+        <div class="about-us__content-video">
+            <iframe src="https://vk.com/video_ext.php?oid=-111636339&id=456239118" width="426" height="240"
+                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0"
+                    allowfullscreen></iframe>
+        </div>
     </div>
 </div>
 @include('layouts.gallery-short')
