@@ -5,9 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class GalleryController extends Controller
 {
+    private ImageManager $imageManager;
+
+    public function __construct()
+    {
+        // Инициализация драйвера
+        $this->imageManager = new ImageManager(new Driver());
+    }
+
     public function index()
     {
         $galleries = Gallery::latest()->paginate(12);
@@ -27,7 +37,8 @@ class GalleryController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120'
         ]);
 
-        $imagePath = $request->file('image')->store('gallery', 'public');
+        $image = $request->file('image');
+        $imagePath = $this->processImage($image);
 
         Gallery::create([
             'title' => $request->title,
@@ -55,8 +66,12 @@ class GalleryController extends Controller
         $data = $request->only(['title', 'description']);
 
         if ($request->hasFile('image')) {
-            Storage::delete('public/'.$gallery->image_path);
-            $data['image_path'] = $request->file('image')->store('gallery', 'public');
+            Storage::delete('public/' . $gallery->image_path);
+
+            $image = $request->file('image');
+            $imagePath = $this->processImage($image);
+
+            $data['image_path'] = $imagePath;
         }
 
         $gallery->update($data);
@@ -67,10 +82,42 @@ class GalleryController extends Controller
 
     public function destroy(Gallery $gallery)
     {
-        Storage::delete('public/'.$gallery->image_path);
+        Storage::delete('public/' . $gallery->image_path);
         $gallery->delete();
 
         return redirect()->route('galleries.index')
             ->with('success', 'Изображение удалено');
+    }
+
+    private function processImage($image): string
+    {
+        $filename = uniqid() . '.webp';
+        $path = 'gallery/' . $filename;
+        $thumbPath = 'gallery/thumbs/' . $filename;
+
+        // Основное изображение
+        $this->processImageSize($image, $path, 1920, 1080, 80);
+
+        // Миниатюра
+        $this->processImageSize($image, $thumbPath, 400, 400, 70);
+
+        return $path;
+    }
+
+    private function processImageSize($image, string $path, int $width, int $height, int $quality): void
+    {
+        $image = $this->imageManager->read($image);
+
+        $image->scale($width, $height, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+
+        $image->toWebp($quality);
+
+        Storage::disk('public')->put(
+            $path,
+            $image->encode()
+        );
     }
 }

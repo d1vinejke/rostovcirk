@@ -3,6 +3,11 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    <IfModule mod_expires.c>
+        ExpiresActive On
+        ExpiresByType image/webp "access plus 1 sec"
+    </IfModule>
+
     RewriteEngine On
 
     # Handle Authorization Header
@@ -18,4 +23,5 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
 </IfModule>
