@@ -23,8 +23,8 @@ class CompressImages extends Command
 
     public function handle()
     {
-        $sourcePath = storage_path('gallery');
-        $thumbsPath = storage_path('gallery/thumbs');
+        $sourcePath = storage_path('/app/public/gallery');
+        $thumbsPath = storage_path('/app/public/gallery/thumbs');
 
         // Создаем директорию для миниатюр, если она не существует
         if (!File::exists($thumbsPath)) {
