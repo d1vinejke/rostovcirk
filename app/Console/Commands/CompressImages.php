@@ -35,7 +35,7 @@ class CompressImages extends Command
         $files = File::allFiles($sourcePath);
 
         foreach ($files as $file) {
-            if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
+            if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
                 $this->info('Processing: ' . $file->getFilename());
 
                 $image = $this->imageManager->read($file->getRealPath());
