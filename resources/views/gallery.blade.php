@@ -44,7 +44,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const lazyImage = entry.target;
-                        lazyImage.src = lazyImage.dataset.src;
 
                         // Обработка успешной загрузки
                         lazyImage.onload = () => {

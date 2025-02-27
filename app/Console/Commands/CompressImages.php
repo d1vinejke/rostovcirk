@@ -46,7 +46,6 @@ class CompressImages extends Command
                 $image->toWebp(70);
 
                 $thumbPath = $thumbsPath . '/' . $file->getFilename();
-                $image->save($thumbPath);
 
                 Storage::disk('public')->put(
                     $thumbPath,
