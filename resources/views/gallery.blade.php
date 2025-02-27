@@ -1,5 +1,5 @@
 @php
-    $images = \App\Models\Gallery::paginate(12); // Используем пагинацию
+    $images = \App\Models\Gallery::all(); // Используем пагинацию
 @endphp
 
 @include('layouts.head')
