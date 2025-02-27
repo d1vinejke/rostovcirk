@@ -37,7 +37,7 @@ class CompressImages extends Command
 
         foreach ($files as $file) {
             foreach ($alreadyCompressed as $compressedFile) {
-                if($file->getFilename() !== $compressedFile->getFilename()) {
+                if($file->getFilename() != $compressedFile->getFilename()) {
                     if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
                         $this->info('Processing: ' . $file->getFilename());
 
@@ -50,6 +50,8 @@ class CompressImages extends Command
 
                         $thumbPath = $thumbsPath . '/' . $file->getFilename();
                         $image->save($thumbPath);
+
+                        $this->info('Compressed: ' . $compressedFile->getFilename());
                     }
                 }
             }
