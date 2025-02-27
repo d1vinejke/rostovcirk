@@ -33,20 +33,25 @@ class CompressImages extends Command
 
         // Получаем все изображения в директории
         $files = File::allFiles($sourcePath);
+        $alreadyCompressed = File::allFiles($thumbsPath);
 
         foreach ($files as $file) {
-            if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-                $this->info('Processing: ' . $file->getFilename());
+            foreach ($alreadyCompressed as $compressedFile) {
+                if($file->getFilename() !== $compressedFile->getFilename()) {
+                    if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+                        $this->info('Processing: ' . $file->getFilename());
 
-                $image = $this->imageManager->read($file->getRealPath());
-                $image->scale(400, 400, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
-                $image->toWebp(70);
+                        $image = $this->imageManager->read($file->getRealPath());
+                        $image->scale(400, 400, function ($constraint) {
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+                        });
+                        $image->toWebp(70);
 
-                $thumbPath = $thumbsPath . '/' . $file->getFilename();
-                $image->save($thumbPath);
+                        $thumbPath = $thumbsPath . '/' . $file->getFilename();
+                        $image->save($thumbPath);
+                    }
+                }
             }
         }
 
