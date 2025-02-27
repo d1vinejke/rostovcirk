@@ -5,7 +5,7 @@
 
     <IfModule mod_expires.c>
         ExpiresActive On
-        ExpiresByType image/webp "access plus 1 sec"
+        ExpiresByType image/webp "access plus 1 day"
     </IfModule>
 
     RewriteEngine On
