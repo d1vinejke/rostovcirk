@@ -3,9 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
 class CompressImages extends Command
@@ -35,25 +34,33 @@ class CompressImages extends Command
         $files = File::allFiles($sourcePath);
         $alreadyCompressed = File::allFiles($thumbsPath);
 
+        // Создаем массив с именами уже сжатых файлов для быстрого поиска
+        $compressedFileNames = array_map(function ($file) {
+            return $file->getFilename();
+        }, $alreadyCompressed);
+
         foreach ($files as $file) {
-            foreach ($alreadyCompressed as $compressedFile) {
-                if($file->getFilename() != $compressedFile->getFilename()) {
-                    if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-                        $this->info('Processing: ' . $file->getFilename());
+            // Проверяем, существует ли уже сжатая версия файла
+            if (in_array($file->getFilename(), $compressedFileNames)) {
+                $this->info('Skipping already compressed: ' . $file->getFilename());
+                continue; // Пропускаем этот файл
+            }
 
-                        $image = $this->imageManager->read($file->getRealPath());
-                        $image->scale(400, 400, function ($constraint) {
-                            $constraint->aspectRatio();
-                            $constraint->upsize();
-                        });
-                        $image->toWebp(70);
+            if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+                $this->info('Processing: ' . $file->getFilename());
 
-                        $thumbPath = $thumbsPath . '/' . $file->getFilename();
-                        $image->save($thumbPath);
+                // Читаем изображение
+                $image = $this->imageManager->read($file->getRealPath());
+                $image->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
 
-                        $this->info('Compressed: ' . $compressedFile->getFilename());
-                    }
-                }
+                // Сохраняем миниатюру в формате WebP
+                $thumbPath = $thumbsPath . '/' . pathinfo($file->getFilename(), PATHINFO_FILENAME) . '.webp';
+                $image->save($thumbPath, 70); // Сохраняем с качеством 70
+
+                $this->info('Compressed: ' . $file->getFilename());
             }
         }
 
