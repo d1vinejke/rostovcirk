@@ -56,8 +56,7 @@ class CompressImages extends Command
                     $constraint->upsize();
                 });
 
-                // Сохраняем миниатюру в формате WebP
-                $thumbPath = $thumbsPath . '/' . pathinfo($file->getFilename(), PATHINFO_FILENAME) . '.webp';
+                $thumbPath = $thumbsPath . '/' . pathinfo($file->getFilename(), PATHINFO_FILENAME) . '.' . pathinfo($file->getFilename(), PATHINFO_EXTENSION);
                 $image->save($thumbPath, 70); // Сохраняем с качеством 70
 
                 $this->info('Compressed: ' . $file->getFilename());
