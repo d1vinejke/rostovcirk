@@ -27,11 +27,6 @@
     @endforeach
 </div>
 
-<!-- Пагинация -->
-<div class="gallery-pagination">
-    {{ $images->links() }}
-</div>
-
 <!-- Лайтбокс -->
 <div class="lightbox">
     <span class="close-btn">&times;</span>
