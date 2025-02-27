@@ -35,7 +35,7 @@ class CompressImages extends Command
         $files = File::allFiles($sourcePath);
 
         foreach ($files as $file) {
-            if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+            if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
                 $this->info('Processing: ' . $file->getFilename());
 
                 $image = $this->imageManager->read($file->getRealPath());
@@ -46,11 +46,7 @@ class CompressImages extends Command
                 $image->toWebp(70);
 
                 $thumbPath = $thumbsPath . '/' . $file->getFilename();
-
-                Storage::disk('public')->put(
-                    $thumbPath,
-                    $image->encode()
-                );
+                $image->save($thumbPath);
             }
         }
 
