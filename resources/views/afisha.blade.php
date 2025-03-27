@@ -1,6 +1,6 @@
 <?php
     $events = \App\Models\Event::published()
-        ->orderBy('event_date', 'desc')
+        ->orderBy('event_date', 'asc')
         ->get();
 ?>
 
