@@ -2,7 +2,7 @@
 
 use App\Models\Review;
 
-$reviews = Review::approved()->latest()->take(8)->get();
+$reviews = Review::approved()->latest()->take(9)->get();
 ?>
 <div class="reviews-container">
     @foreach($reviews as $review)
