@@ -1,5 +1,7 @@
 <?php
-    $events = \App\Models\Event::published()->latest()->get();
+    $events = \App\Models\Event::published()
+        ->orderBy('event_date', 'desc')
+        ->get();
 ?>
 
 @include('layouts.head')
