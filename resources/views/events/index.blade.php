@@ -58,8 +58,7 @@
                             </tbody>
                         </table>
                     </div>
-
-                    {{ $events->links() }}
+                    <div class="links" style="margin-top: 15px;">{{ $events->links() }}</div>
                 </div>
             </div>
         </div>
