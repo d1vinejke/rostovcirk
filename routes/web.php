@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContentBlockController;
 use App\Http\Controllers\BuyTickets;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
@@ -72,6 +73,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::prefix('admin/content')->middleware(['auth'])->group(function () {
+    Route::get('/', [ContentBlockController::class, 'index'])->name('admin.content.index');
+    Route::get('/{contentBlock}/edit', [ContentBlockController::class, 'edit'])->name('admin.content.edit');
+    Route::put('/{contentBlock}', [ContentBlockController::class, 'update'])->name('admin.content.update');
 });
 
 require __DIR__ . '/auth.php';

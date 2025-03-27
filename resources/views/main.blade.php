@@ -3,8 +3,8 @@
 <div class="main-logo-container relative">
     <img src="/images/main-logo.jpg" alt="" class="main-logo absolute z-0">
     <div class="flex flex-col flex-nowrap content-start text-logo-block">
-        <span class="logo-text-1 z-10 relative">Ростовский цирк</span>
-        <span class="logo-text-2 z-10 relative">Путешествие в мир фантазий</span>
+        <span class="logo-text-1 z-10 relative">{{ content('main_banner__name') }}</span>
+        <span class="logo-text-2 z-10 relative">{{ content('main_banner__subtitle') }}</span>
     </div>
 </div>
 <div class="flex flex-row flex-nowrap relative middle-block justify-between">
@@ -53,10 +53,7 @@
         </div>
     </div>
     <div class="text-slider">
-        Это не просто ЦИРК, это удивительное путешествие по самым разным фантастическим мирам, в которое вы отправитесь
-        вместе с нашими героями. Там вас ждут просто невероятные приключения Гринча и Марио, встречи с самыми необычными
-        персонажами из “Алисы в стране чудес” и “Холодного сердца”, компьютерных игр и пришельцами из космоса! И
-        весёлыми клоунами Зизи и Бимбо. Море впечатлений гарантировано!!!!
+        {{ content('main_banner__description') }}
     </div>
 </div>
 
